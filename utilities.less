@@ -1,0 +1,420 @@
+/*  ############################################################
+    Title: Utility Classes
+    Description: A file to dynamically generate utility classes for any web project.
+    They are based on FAT's guidelines.
+    Author: Valentin Scholz
+    Website: http://www.valentinscholz.com
+    License: The MIT License
+    License URL: http://opensource.org/licenses/MIT
+    ############################################################ */
+
+@margins_step: 5;
+@margins_start: 0;
+@margins_end: 50;
+
+@paddings_step: 5;
+@paddings_start: 0;
+@paddings_end: 50;
+
+@opacity_step: 10;
+@opacity_start: 10;
+@opacity_end: 50;
+
+@lineheight_step: 10;
+@lineheight_start: 100;
+@lineheight_end: 200;
+
+@fontweight_step: 100;
+@fontweight_start: 300;
+@fontweight_end: 800;
+
+@bordersize_step: 1;
+@bordersize_start: 0;
+@bordersize_end: 1;
+
+@borderradius_step: 1;
+@borderradius_start: 0;
+@borderradius_end: 5;
+
+@fontsize_step: 1;
+@fontsize_start: 10;
+@fontsize_end: 20;
+
+/* -------------------
+----  DISPLAY  ----
+------------------- */
+.u-displayInline {
+  display: inline;
+}
+.u-displayBlock {
+  display: block;
+}
+.u-displayInlineblock {
+  display: inline-block;
+}
+.u-displayNone {
+  display: none;
+}
+
+/* -----------------------
+----  OPACITY  ----
+----------------------- */
+.generate-opacity(@opacity_end);
+.generate-opacity(@n, @i: @opacity_start) when (@i =< @n) {
+  .u-opacity@{i} {
+    opacity: (@i / 100);
+  }
+  .generate-opacity(@n, (@i + @opacity_step));
+}
+
+
+/* -----------------------
+----  TABLE CELL  ----
+----------------------- */
+.u-tableRow,
+.u-tableCell {
+  position: relative;
+  box-sizing: border-box;
+}
+.u-tableRow {
+  display: table;
+  width: 100%;
+}
+.u-tableCell {
+  display: table-cell;
+  width: auto;
+  vertical-align: top;
+}
+.u-tableCell--stretched {
+  width: 100%;
+  white-space: normal;
+}
+
+
+/* --------------------
+----  WHITE SPACE  ----
+----------------------- */
+.u-whitespaceNormal {
+  white-space: normal !important;
+}
+.u-whitespaceNowrap {
+  white-space: nowrap !important;
+}
+
+
+/* -----------------------
+----  POSITIONING  ----
+----------------------- */
+.u-positionAbsolute {
+  position: absolute;
+}
+.u-positionRelative {
+  position: relative;
+}
+.u-positionCentered {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+
+/* -----------------------
+----  CLEAR  ----
+----------------------- */
+.u-clearBoth {
+  clear: both;
+}
+.u-clearLeft {
+  clear: left;
+}
+.u-clearRight {
+  clear: right;
+}
+
+
+/* -----------------------
+----  FLOAT  ----
+----------------------- */
+.u-pullLeft {
+  float: left;
+}
+.u-pullRight {
+  float: right;
+}
+
+
+/* -----------------------
+----  BACKGROUND  ----
+----------------------- */
+.u-bgWhite {
+  background-color: white !important;
+}
+
+
+/* -----------------------
+----  TEXT COLOR  ----
+----------------------- */
+.u-colorWhite {
+  color: white !important;
+}
+.u-colorBlue {
+  color: @blue !important;
+}
+.u-colorGrey {
+  color: @grey !important;
+}
+.u-colorGreydark {
+  color: @grey-dark !important;
+}
+.u-colorGreydarker {
+  color: @grey-darker !important;
+}
+.u-colorGreydarkest {
+  color: @grey-darkest !important;
+}
+.u-colorDark {
+  color: @dark !important;
+}
+.u-colorRed {
+  color: @red-light !important;
+}
+.u-colorGreen {
+  color: @green-light !important;
+}
+
+
+/* -----------------------
+----  BORDER SIZE  ----
+----------------------- */
+.generate-bordersize(@bordersize_end);
+.generate-bordersize(@n, @i: @bordersize_start) when (@i =< @n) {
+  .u-borderTop@{i} {
+    border-top: (@i * 1px)
+  }
+  .u-borderRight@{i} {
+    border-right: (@i * 1px);
+  }
+  .u-borderBottom@{i} {
+    border-bottom: (@i * 1px);
+  }
+  .u-borderLeft@{i} {
+    border-left: (@i * 1px);
+  }
+  .u-borderVertical@{i} {
+    border-top: (@i * 1px);
+    border-bottom: (@i * 1px);
+  }
+  .u-borderHorizontal@{i} {
+    border-left: (@i * 1px);
+    border-right: (@i * 1px);
+  }
+  .u-border@{i} {
+    border: (@i * 1px);
+  }
+  .generate-bordersize(@n, (@i + @bordersize_step));
+}
+
+
+/* -----------------------
+----  BORDER COLORS  ----
+----------------------- */
+.u-bordercolorGrey {
+  border-color: @grey;
+}
+
+
+/* -----------------------
+----  BORDER RADIUS  ----
+----------------------- */
+.generate-borderradius(@borderradius_end);
+.generate-borderradius(@n, @i: @borderradius_start) when (@i =< @n) {
+  .u-borderRadius@{i} {
+    border-radius: (@i * 1px);
+  }
+  .generate-borderradius(@n, (@i + @borderradius_step));
+}
+
+
+/* -----------------------
+----  FONT-WEIGHT  ----
+----------------------- */
+.generate-fontsize(@fontsize_end);
+.generate-fontsize(@n, @i: @fontsize_start) when (@i =< @n) {
+  .u-fontSize-@{i} {
+    font-size: (@i * 1px);
+  }
+  .generate-fontsize(@n, (@i + @fontsize_step));
+}
+
+
+/* -----------------------
+----  TEXT ALIGN  ----
+----------------------- */
+.u-textCenter {
+  text-align: center;
+}
+.u-textLeft {
+  text-align: left;
+}
+.u-textRight {
+  text-align: right;
+}
+
+/* -----------------------
+----  TEXT STYLES  ----
+----------------------- */
+.u-textPlain {
+  text-decoration: none;
+}
+.u-textUnderline {
+  text-decoration: underline;
+}
+.u-textLinethrough {
+  text-decoration: line-through;
+}
+.u-textOverflow {
+  text-overflow: ellipsis !important;
+  overflow: hidden !important;
+}
+
+/* -----------------------
+----  CURSOR  ----
+----------------------- */
+.u-cursorDefault {
+  cursor: default;
+}
+.u-cursorPointer {
+  cursor: pointer;
+}
+.u-cursorGrabbing {
+  cursor: grabbing;
+}
+.u-cursorHelp {
+  cursor: help;
+}
+.u-cursorMove {
+  cursor: move;
+}
+.u-cursorProgress {
+  cursor: progress;
+}
+.u-cursorNone {
+  cursor: progress;
+}
+.u-cursorText {
+  cursor: text;
+}
+.u-cursorNotallowed {
+  cursor: not-allowed;
+}
+
+
+/* -----------------------
+----  VERTICAL ALIGN  ----
+-------------------------- */
+.u-verticalTop {
+  vertical-align: top;
+}
+.u-verticalTop\* * {
+  vertical-align: middle;
+}
+.u-verticalMiddle {
+  vertical-align: middle;
+}
+.u-verticalMiddle\* * {
+  vertical-align: middle;
+}
+.u-verticalBottom {
+  vertical-align: bottom;
+}
+.u-verticalBottom\* * {
+  vertical-align: middle;
+}
+
+
+/* -----------------------
+----  FONT-WEIGHT  ----
+----------------------- */
+.generate-fontweight(@fontweight_end);
+.generate-fontweight(@n, @i: @fontweight_start) when (@i =< @n) {
+  .u-fontWeight@{i} {
+    font-weight: @i;
+  }
+  .generate-fontweight(@n, (@i + @fontweight_step));
+}
+
+
+/* -----------------------
+----  LINE HEIGHT  ----
+----------------------- */
+.generate-lineheight(@lineheight_end);
+.generate-lineheight(@n, @i: @lineheight_start) when (@i =< @n) {
+  .u-lineheight@{i} {
+    line-height: (@i / 100);
+  }
+  .generate-lineheight(@n, (@i + @lineheight_step));
+}
+
+
+/* -------------------
+----  PADDING  ----
+------------------- */
+.generate-paddings(@paddings_end);
+.generate-paddings(@n, @i: @paddings_start) when (@i =< @n) {
+  .u-paddingTop@{i} {
+    padding-top: (@i * 1px)
+  }
+  .u-paddingTop@{i} {
+    padding-right: (@i * 1px);
+  }
+  .u-paddingBottom@{i} {
+    padding-bottom: (@i * 1px);
+  }
+  .u-paddingLeft@{i} {
+    padding-left: (@i * 1px);
+  }
+  .u-paddingVertical@{i} {
+    padding-top: (@i * 1px);
+    padding-bottom: (@i * 1px);
+  }
+  .u-paddingHorizontal@{i} {
+    padding-left: (@i * 1px);
+    padding-right: (@i * 1px);
+  }
+  .u-padding@{i} {
+    padding: (@i * 1px);
+  }
+  .generate-paddings(@n, (@i + @paddings_step));
+}
+
+
+/* -------------------
+----  MARGIN  ----
+------------------- */
+.generate-margins(@margins_end);
+.generate-margins(@n, @i: @margins_start) when (@i =< @n) {
+  .u-marginTop@{i} {
+    margin-top: (@i * 1px)
+  }
+  .u-marginRight@{i} {
+    margin-right: (@i * 1px);
+  }
+  .u-marginBottom@{i} {
+    margin-bottom: (@i * 1px);
+  }
+  .u-marginLeft@{i} {
+    margin-left: (@i * 1px);
+  }
+  .u-marginVertical@{i} {
+    margin-top: (@i * 1px);
+    margin-bottom: (@i * 1px);
+  }
+  .u-marginHorizontal@{i} {
+    margin-left: (@i * 1px);
+    margin-right: (@i * 1px);
+  }
+  .u-margin@{i} {
+    margin: (@i * 1px);
+  }
+  .generate-margins(@n, (@i + @margins_step));
+}
